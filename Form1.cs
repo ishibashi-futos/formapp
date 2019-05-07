@@ -110,8 +110,14 @@ namespace formapp
             {
                 resultList.Add((uint)r.Next(1, (int)max));
             }
-            string[] s = {(this.dataGrid.Rows.Count).ToString(), now, string.Join(", ", resultList)};
+            this.AddRow(now, string.Join(", ", resultList));
+        }
+
+        private void AddRow(string now, string result)
+        {
+            string[] s = {(this.dataGrid.Rows.Count).ToString(), now, result};
             this.dataGrid.Rows.Add(s);
+            this.dataGrid.FirstDisplayedScrollingRowIndex = this.dataGrid.Rows.Count - 1;
         }
 
         private void windowNewMenu_Click(object sender, EventArgs e)
