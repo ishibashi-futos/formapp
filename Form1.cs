@@ -16,6 +16,7 @@ namespace formapp
         private Button button;
         private NumericUpDown spin;
         private MenuStrip ms;
+        private TextBox text;
 
         public Form1()
         {
@@ -25,6 +26,14 @@ namespace formapp
 
         private void CreateControls()
         {
+
+            this.Controls.Add(text = new TextBox{
+                Location = new Point(10, 50),
+                Size = new Size(780, 100),
+                AcceptsTab = true,
+                Multiline = true,
+                ScrollBars = ScrollBars.Vertical,
+            });
 
             this.Controls.Add(spin = new NumericUpDown{
                 Location = new Point(10, 300),
