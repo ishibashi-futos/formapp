@@ -48,17 +48,17 @@ namespace formapp
             };
 
             this.dataGrid.Columns[0].Name = "No";
-            this.dataGrid.Columns[0].Width = 100;
+            this.dataGrid.Columns[0].Width = 50;
             this.dataGrid.Columns[1].Name = "Time";
-            this.dataGrid.Columns[1].Width = 100;
+            this.dataGrid.Columns[1].Width = 150;
             this.dataGrid.Columns[2].Name = "Result";
             this.dataGrid.Columns[2].Width = 560;
 
-            for (var i = 1; i <= 10; i++)
-            {
-                string[] s = {i.ToString(), string.Format("result{0}",i), "Result"};
-                this.dataGrid.Rows.Add(s);
-            }
+            // for (var i = 1; i <= 10; i++)
+            // {
+            //     string[] s = {i.ToString(), string.Format("result{0}",i), "Result"};
+            //     this.dataGrid.Rows.Add(s);
+            // }
 
             this.Controls.Add(this.dataGrid);
 
@@ -99,7 +99,19 @@ namespace formapp
 
         private void Button_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(String.Format("{0}", (uint)spin.Value));
+            var now = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+            uint count = (uint)spin.Value;
+            // TODO: Dropdownから取得するように変更する.
+            uint max = 100;
+            var resultList = new List<uint>();
+            var r = new System.Random();
+
+            for (var i = 0; i < count; i++)
+            {
+                resultList.Add((uint)r.Next(1, (int)max));
+            }
+            string[] s = {(this.dataGrid.Rows.Count).ToString(), now, string.Join(", ", resultList)};
+            this.dataGrid.Rows.Add(s);
         }
 
         private void windowNewMenu_Click(object sender, EventArgs e)
