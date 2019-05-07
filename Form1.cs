@@ -44,25 +44,23 @@ namespace formapp
                 RowHeadersVisible = false,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
                 MultiSelect = false,
-                ColumnCount = 2
+                ColumnCount = 3
             };
 
-            this.dataGrid.Columns[0].Name = "Time";
-            this.dataGrid.Columns[1].Name = "Result";
+            this.dataGrid.Columns[0].Name = "No";
+            this.dataGrid.Columns[0].Width = 100;
+            this.dataGrid.Columns[1].Name = "Time";
+            this.dataGrid.Columns[1].Width = 100;
+            this.dataGrid.Columns[2].Name = "Result";
+            this.dataGrid.Columns[2].Width = 560;
 
             for (var i = 1; i <= 10; i++)
             {
-                string[] s = {i.ToString(), string.Format("result{0}",i)};
+                string[] s = {i.ToString(), string.Format("result{0}",i), "Result"};
                 this.dataGrid.Rows.Add(s);
             }
 
             this.Controls.Add(this.dataGrid);
-
-            for (var i = 0; i < this.dataGrid.Columns.Count; i++)
-            {
-                this.dataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            }
-
 
             this.Controls.Add(spin = new NumericUpDown{
                 Location = new Point(10, 300),
