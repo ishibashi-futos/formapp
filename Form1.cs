@@ -15,6 +15,7 @@ namespace formapp
 
         private Button button;
         private NumericUpDown spin;
+        private MenuStrip ms;
 
         public Form1()
         {
@@ -26,7 +27,7 @@ namespace formapp
         {
 
             this.Controls.Add(spin = new NumericUpDown{
-                Location = new Point(10, 10),
+                Location = new Point(10, 300),
                 Size = new Size(300, 100),
                 Value = 5,
                 Maximum = 10,
@@ -35,17 +36,42 @@ namespace formapp
             });
 
             this.Controls.Add(button = new Button{
-                Location = new Point(5, 230),
-                Size = new Size(200, 22),
+                Location = new Point(650, 300),
+                Size = new Size(100, 22),
                 Text = "button",
                 BackColor = Color.Crimson,
             });
             button.Click += Button_Click;
+
+            this.ms = new MenuStrip();
+            ToolStripMenuItem windowMenu = new ToolStripMenuItem("Window");
+            ToolStripMenuItem windowNewMenu = new ToolStripMenuItem("New", null, new EventHandler(windowNewMenu_Click));
+            windowMenu.DropDownItems.Add(windowNewMenu);
+            ((ToolStripDropDownMenu)(windowMenu.DropDown)).ShowImageMargin = false;
+            ((ToolStripDropDownMenu)(windowMenu.DropDown)).ShowCheckMargin = true;
+            
+            ms.MdiWindowListItem = windowMenu;
+
+            ms.Items.Add(windowMenu);
+
+            ms.Dock = DockStyle.Top;
+
+            this.MainMenuStrip = ms;
+
+            this.Controls.Add(ms);
         }
 
         private void Button_Click(object sender, EventArgs e)
         {
             MessageBox.Show(String.Format("{0}", (uint)spin.Value));
         }
+
+        private void windowNewMenu_Click(object sender, EventArgs e)
+        {
+            Form f = new Form();
+            f.Text = "Form - " + this.spin.Value.ToString();
+            f.Show();
+        }
+
     }
 }
