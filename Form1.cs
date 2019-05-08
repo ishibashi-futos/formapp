@@ -16,7 +16,6 @@ namespace formapp
         private Button button;
         private NumericUpDown spin;
         private MenuStrip ms;
-        private TextBox text;
         private DataGridView dataGrid;
 
         public Form1()
@@ -28,19 +27,11 @@ namespace formapp
         private void CreateControls()
         {
 
-            this.Controls.Add(text = new TextBox{
-                Location = new Point(10, 50),
-                Size = new Size(780, 100),
-                AcceptsTab = true,
-                Multiline = true,
-                ScrollBars = ScrollBars.Vertical,
-            });
-
             // TODO: Columnのサイズを最大化する
             this.dataGrid = new DataGridView{
                 Name = "DataGridView",
-                Location = new Point(10, 160),
-                Size = new Size(780, 100),
+                Location = new Point(10, 50),
+                Size = new Size(780, 300),
                 RowHeadersVisible = false,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
                 MultiSelect = false,
@@ -54,29 +45,21 @@ namespace formapp
             this.dataGrid.Columns[2].Name = "Result";
             this.dataGrid.Columns[2].Width = 560;
 
-            // for (var i = 1; i <= 10; i++)
-            // {
-            //     string[] s = {i.ToString(), string.Format("result{0}",i), "Result"};
-            //     this.dataGrid.Rows.Add(s);
-            // }
-
-            this.Controls.Add(this.dataGrid);
-
-            this.Controls.Add(spin = new NumericUpDown{
-                Location = new Point(10, 300),
+            spin = new NumericUpDown{
+                Location = new Point(10, 370),
                 Size = new Size(300, 100),
                 Value = 5,
                 Maximum = 10,
                 Minimum = 1,
                 Increment = 1.0M
-            });
+            };
 
-            this.Controls.Add(button = new Button{
-                Location = new Point(650, 300),
+            button = new Button{
+                Location = new Point(650, 370),
                 Size = new Size(100, 22),
                 Text = "button",
                 BackColor = Color.Crimson,
-            });
+            };
             button.Click += Button_Click;
 
             this.ms = new MenuStrip();
@@ -94,7 +77,12 @@ namespace formapp
 
             this.MainMenuStrip = ms;
 
-            this.Controls.Add(ms);
+            this.Controls.AddRange(new System.Windows.Forms.Control[] {
+                this.dataGrid,
+                this.spin,
+                this.button,
+                this.ms
+            });
         }
 
         private void Button_Click(object sender, EventArgs e)
