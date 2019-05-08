@@ -102,12 +102,12 @@ namespace formapp
             uint count = (uint)this.spin.Value;
             // TODO: Dropdownから取得するように変更する.
             uint max = (uint)this.spin2.Value;
-            var resultList = new List<uint>();
+            uint[] resultList = new uint[count];
             var r = new System.Random();
 
             for (var i = 0; i < count; i++)
             {
-                resultList.Add((uint)r.Next(1, (int)max));
+                resultList[i] = (uint)r.Next(1, (int)max);
             }
             this.AddRow(now, string.Join(", ", resultList));
         }
