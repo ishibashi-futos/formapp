@@ -1,6 +1,11 @@
 # formapp
 .NET Core 3.0.100-preview5-011568 を使用したFormアプリケーションサンプル
 
+## Purpose
+
+* .NET Core 3.0から追加されたDesktopアプリケーションを試す.
+* `/p:PublishSingleFile`オプションを試す
+
 ## Require
 
 * Windows10
