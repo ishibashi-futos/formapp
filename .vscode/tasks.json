@@ -20,7 +20,7 @@
     },
     {
       "label": "publish",
-      "command": "dotnet publish --configuration=Release -r win10-x64 --self-contained=true /p:PublishSigleFile=true",
+      "command": "dotnet publish --configuration=Release -r win10-x64 --self-contained=true /p:PublishSingleFile=true",
       "type" : "shell"
     }
   ]
