@@ -15,6 +15,7 @@ namespace formapp
 
         private Button button;
         private NumericUpDown spin;
+        private NumericUpDown spin2;
         private MenuStrip ms;
         private DataGridView dataGrid;
 
@@ -45,8 +46,17 @@ namespace formapp
             this.dataGrid.Columns[2].Name = "Result";
             this.dataGrid.Columns[2].Width = 560;
 
+            spin2 = new NumericUpDown{
+                Location = new Point(10, 355),
+                Size = new Size(300, 100),
+                Value = 5,
+                Maximum = 100,
+                Minimum = 1,
+                Increment = 1.0M
+            };
+
             spin = new NumericUpDown{
-                Location = new Point(10, 370),
+                Location = new Point(10, 375),
                 Size = new Size(300, 100),
                 Value = 5,
                 Maximum = 10,
@@ -55,7 +65,7 @@ namespace formapp
             };
 
             button = new Button{
-                Location = new Point(650, 370),
+                Location = new Point(650, 375),
                 Size = new Size(100, 22),
                 Text = "button",
                 BackColor = Color.Crimson,
@@ -81,16 +91,17 @@ namespace formapp
                 this.dataGrid,
                 this.spin,
                 this.button,
-                this.ms
+                this.ms,
+                this.spin2,
             });
         }
 
         private void Button_Click(object sender, EventArgs e)
         {
             var now = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-            uint count = (uint)spin.Value;
+            uint count = (uint)this.spin.Value;
             // TODO: Dropdownから取得するように変更する.
-            uint max = 100;
+            uint max = (uint)this.spin2.Value;
             var resultList = new List<uint>();
             var r = new System.Random();
 
