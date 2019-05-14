@@ -87,6 +87,8 @@ namespace formapp
 
             this.MainMenuStrip = ms;
 
+            this.dataGrid.TabStop = false;
+
             this.Controls.AddRange(new System.Windows.Forms.Control[] {
                 this.dataGrid,
                 this.spin,
